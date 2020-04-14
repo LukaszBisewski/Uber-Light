@@ -10599,11 +10599,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Passenger\\Passenger.Tests.EndToEnd\\Passenger.Tests.EndToEnd.csproj",
+      "projectUniqueName": "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Uber_Light\\Passenger\\Passenger.Tests.EndToEnd\\Passenger.Tests.EndToEnd.csproj",
       "projectName": "Passenger.Tests.EndToEnd",
-      "projectPath": "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Passenger\\Passenger.Tests.EndToEnd\\Passenger.Tests.EndToEnd.csproj",
+      "projectPath": "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Uber_Light\\Passenger\\Passenger.Tests.EndToEnd\\Passenger.Tests.EndToEnd.csproj",
       "packagesPath": "C:\\Users\\Łukasz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Passenger\\Passenger.Tests.EndToEnd\\obj\\",
+      "outputPath": "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Uber_Light\\Passenger\\Passenger.Tests.EndToEnd\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -10622,11 +10622,11 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Passenger\\Passenger.Api\\Passenger.Api.csproj": {
-              "projectPath": "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Passenger\\Passenger.Api\\Passenger.Api.csproj"
+            "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Uber_Light\\Passenger\\Passenger.Api\\Passenger.Api.csproj": {
+              "projectPath": "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Uber_Light\\Passenger\\Passenger.Api\\Passenger.Api.csproj"
             },
-            "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Passenger\\Passenger.Infrastructure\\Passenger.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Passenger\\Passenger.Infrastructure\\Passenger.Infrastructure.csproj"
+            "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Uber_Light\\Passenger\\Passenger.Infrastructure\\Passenger.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Uber_Light\\Passenger\\Passenger.Infrastructure\\Passenger.Infrastructure.csproj"
             }
           }
         }

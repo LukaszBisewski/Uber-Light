@@ -20,11 +20,11 @@ namespace Passenger.Infrastructure.IoC.Modules
             builder.RegisterAssemblyTypes(assembly)
                         .Where(x => x.IsAssignableTo<IService>())
                         .AsImplementedInterfaces()
-                        .InstancePerLifetimeScope();
+                        .InstancePerLifetimeScope();                       //rejestrowany jako InstancePerLifetimeScope
 
             builder.RegisterType<Encrypter>()
                 .As<IEncrypter>()
-                .SingleInstance();
+                .SingleInstance();                                          //rejestrowany jako pojedyńcza instancja 
 
             builder.RegisterType<JwtHandler>()
                 .As<JwtHandler>()

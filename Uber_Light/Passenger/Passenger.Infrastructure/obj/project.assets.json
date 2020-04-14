@@ -7127,11 +7127,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Passenger\\Passenger.Infrastructure\\Passenger.Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Uber_Light\\Passenger\\Passenger.Infrastructure\\Passenger.Infrastructure.csproj",
       "projectName": "Passenger.Infrastructure",
-      "projectPath": "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Passenger\\Passenger.Infrastructure\\Passenger.Infrastructure.csproj",
+      "projectPath": "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Uber_Light\\Passenger\\Passenger.Infrastructure\\Passenger.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\Łukasz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Passenger\\Passenger.Infrastructure\\obj\\",
+      "outputPath": "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Uber_Light\\Passenger\\Passenger.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -7150,8 +7150,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Passenger\\Passenger.Core\\Passenger.Core.csproj": {
-              "projectPath": "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Passenger\\Passenger.Core\\Passenger.Core.csproj"
+            "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Uber_Light\\Passenger\\Passenger.Core\\Passenger.Core.csproj": {
+              "projectPath": "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Uber_Light\\Passenger\\Passenger.Core\\Passenger.Core.csproj"
             }
           }
         }

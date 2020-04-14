@@ -18,3 +18,9 @@ C:\Users\Łukasz\source\repos\Repo\Passenger\Passenger\Passenger.Tests\obj\Debug
 C:\Users\Łukasz\source\repos\Repo\Passenger\Passenger\Passenger.Tests\obj\Debug\netcoreapp2.1\Passenger.Tests.csproj.CopyComplete
 C:\Users\Łukasz\source\repos\Repo\Passenger\Passenger\Passenger.Tests\obj\Debug\netcoreapp2.1\Passenger.Tests.dll
 C:\Users\Łukasz\source\repos\Repo\Passenger\Passenger\Passenger.Tests\obj\Debug\netcoreapp2.1\Passenger.Tests.pdb
+C:\Users\Łukasz\source\repos\Repo\Passenger\Uber_Light\Passenger\Passenger.Tests\obj\Debug\netcoreapp2.1\Passenger.Tests.csprojAssemblyReference.cache
+C:\Users\Łukasz\source\repos\Repo\Passenger\Uber_Light\Passenger\Passenger.Tests\obj\Debug\netcoreapp2.1\Passenger.Tests.csproj.CoreCompileInputs.cache
+C:\Users\Łukasz\source\repos\Repo\Passenger\Uber_Light\Passenger\Passenger.Tests\obj\Debug\netcoreapp2.1\Passenger.Tests.AssemblyInfoInputs.cache
+C:\Users\Łukasz\source\repos\Repo\Passenger\Uber_Light\Passenger\Passenger.Tests\obj\Debug\netcoreapp2.1\Passenger.Tests.AssemblyInfo.cs
+C:\Users\Łukasz\source\repos\Repo\Passenger\Uber_Light\Passenger\Passenger.Tests\obj\Debug\netcoreapp2.1\Passenger.Tests.dll
+C:\Users\Łukasz\source\repos\Repo\Passenger\Uber_Light\Passenger\Passenger.Tests\obj\Debug\netcoreapp2.1\Passenger.Tests.pdb

@@ -694,11 +694,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Passenger\\Passenger.Core\\Passenger.Core.csproj",
+      "projectUniqueName": "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Uber_Light\\Passenger\\Passenger.Core\\Passenger.Core.csproj",
       "projectName": "Passenger.Core",
-      "projectPath": "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Passenger\\Passenger.Core\\Passenger.Core.csproj",
+      "projectPath": "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Uber_Light\\Passenger\\Passenger.Core\\Passenger.Core.csproj",
       "packagesPath": "C:\\Users\\Łukasz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Passenger\\Passenger.Core\\obj\\",
+      "outputPath": "C:\\Users\\Łukasz\\source\\repos\\Repo\\Passenger\\Uber_Light\\Passenger\\Passenger.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -19,7 +19,7 @@ namespace Passenger.Infrastructure.Services
             _logger = logger;
             _driverRouteService = driverRouteService;
         }
-
+       
         public async Task SeedAsync()
         {
             _logger.LogTrace("Initializing data...");
