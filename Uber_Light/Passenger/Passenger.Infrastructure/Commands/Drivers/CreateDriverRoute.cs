@@ -10,4 +10,4 @@ namespace Passenger.Infrastructure.Commands.Drivers
         public double EndLatitude { get; set; }
         public double EndLongitude { get; set; }
     }
-}
+ }
