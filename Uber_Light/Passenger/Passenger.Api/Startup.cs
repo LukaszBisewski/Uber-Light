@@ -12,6 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using Passenger.Infrastructure.IoC;
 using Passenger.Infrastructure.Services;
 using Passenger.Infrastructure.Settings;
+using Passenger.Api.Framework;
 
 namespace Passenger.Api
 {
@@ -56,6 +57,7 @@ namespace Passenger.Api
             services.AddMvc()
                     .AddJsonOptions(x => x.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented);
             var builder = new ContainerBuilder();
+  
             builder.Populate(services);
             builder.RegisterModule(new ContainerModule(Configuration));
             ApplicationContainer = builder.Build();
@@ -79,7 +81,7 @@ namespace Passenger.Api
                 var dataInitializer = app.ApplicationServices.GetService<IDataInitializer>();
                 dataInitializer.SeedAsync();
             }
-            app.UseExceptionHandler();
+            app.UseExceptionMiddleware();
             app.UseMvc();
             appLifetime.ApplicationStopped.Register(() => ApplicationContainer.Dispose());
         }
