@@ -13,6 +13,8 @@ using Passenger.Infrastructure.IoC;
 using Passenger.Infrastructure.Services;
 using Passenger.Infrastructure.Settings;
 using Passenger.Api.Framework;
+using NLog.Web;
+using NLog.Extensions.Logging;
 
 namespace Passenger.Api
 {
@@ -69,8 +71,12 @@ namespace Passenger.Api
         public void Configure(IApplicationBuilder app, IHostingEnvironment env,
             ILoggerFactory loggerFactory, IApplicationLifetime appLifetime)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
+            //loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            //loggerFactory.AddDebug();
+            loggerFactory.AddNLog();
+            app.AddNLogWeb();
+            env.ConfigureNLog("Nlog.config");
+
 
             //var jwtSettings = app.ApplicationServices.GetService<JwtSettings>();        //W app pobieramy nasz klucz, w ApplicationServices możemy odwołac się do wszystkich serwisów które zostały zarejestrowane za pomocna metody ConfigureServices. GetService<JwtSettings>();- pobierz implementacje servisu dla JwtSettings 
 

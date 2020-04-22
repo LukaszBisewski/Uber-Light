@@ -3,7 +3,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-
+using Passenger.Infrastructure.Exceptions;
 
 namespace Passenger.Api.Framework
 {
@@ -35,15 +35,19 @@ namespace Passenger.Api.Framework
             var exceptionType = exception.GetType();
             switch(exception)
             {
-                case Exception e when exceptionType == typeof(UnauthorizedAccessException):
+                    case Exception e when exceptionType == typeof(UnauthorizedAccessException):
                     statusCode = HttpStatusCode.Unauthorized;
                     break;
 
-                default:
+                    case ServiceException e when exceptionType == typeof(ServiceException):
+                    statusCode = HttpStatusCode.BadRequest;
+                    errorCode = e.Code;
+                    break;
+
+                    case Exception e when exceptionType == typeof(Exception):
                     statusCode = HttpStatusCode.InternalServerError;
                     break;
-                    
-                                    
+
             }
 
             var response = new { code = errorCode, message = exception.Message };

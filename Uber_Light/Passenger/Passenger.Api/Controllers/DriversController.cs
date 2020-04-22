@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using NLog;
 using Passenger.Infrastructure.Commands;
 using Passenger.Infrastructure.Commands.Drivers;
 using Passenger.Infrastructure.Services;
@@ -10,6 +12,7 @@ namespace Passenger.Api.Controllers
 {
     public class DriversController : ApiControllerBase
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly IDriverService _driverService;
 
         public DriversController(ICommandDispatcher commandDispatcher,
@@ -22,7 +25,7 @@ namespace Passenger.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            throw new Exception("Ups..");
+            Logger.Info("ifneownoenownfoenfowniouehfoiuwheofuhwefouhewoifuoiweuhfoweuhfohewofghwoihowehfr");
             var drivers = await _driverService.BrowseAsync();
 
             return Json(drivers);

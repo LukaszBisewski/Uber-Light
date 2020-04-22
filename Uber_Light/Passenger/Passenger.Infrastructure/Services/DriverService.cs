@@ -5,6 +5,7 @@ using AutoMapper;
 using Passenger.Core.Domain;
 using Passenger.Core.Repositories;
 using Passenger.Infrastructure.DTO;
+using Passenger.Infrastructure.Exceptions;
 using Passenger.Infrastructure.Extensions;
 
 namespace Passenger.Infrastructure.Services
@@ -23,9 +24,6 @@ namespace Passenger.Infrastructure.Services
             _userRepository = userRepository;
             _vehicleProvider = vehicleProvider;
             _mapper = mapper;
-
-
-
 
         }
         public async Task<DriverDetailsDto> GetAsync(Guid userId)
@@ -46,7 +44,7 @@ namespace Passenger.Infrastructure.Services
             var driver =  await _driverRepository.GetAsync(userId);
             if (driver != null)
             {
-                throw new Exception($"Driver with user id: '{userId}' already exists.");
+                throw new ServiceException(ErrorCodesServices.DriverAllreadyExists, $"Driver with user id: '{userId}' already exists.");
             }
             driver = new Driver(user);
             await _driverRepository.AddAsync(driver);
