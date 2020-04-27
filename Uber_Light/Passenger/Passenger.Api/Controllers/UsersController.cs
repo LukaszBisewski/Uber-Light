@@ -48,6 +48,7 @@ namespace Passenger.Api.Controllers
              
         */
         [HttpPost]
+        [Route("list")]
         public async Task<IActionResult> Post([FromBody]CreateUser command)
         {
             await DispatchAsync(command); // wywołanie do interfejscu IComandDispatcher który będzie wiedział co z nim zrobić.

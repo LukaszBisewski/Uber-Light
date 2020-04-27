@@ -15,7 +15,7 @@ namespace Passenger.Infrastructure.Services
         private readonly IEncrypter _encrypter;
         private readonly IMapper _mapper;
 
-        public UserService(IUserRepository userRepository,IEncrypter encrypter, IMapper mapper)
+        public UserService(IUserRepository userRepository, IEncrypter encrypter, IMapper mapper)
         {
             _userRepository = userRepository;
             _encrypter = encrypter;
@@ -29,43 +29,45 @@ namespace Passenger.Infrastructure.Services
             return _mapper.Map<User, UserDto>(user);
         }
 
-        public async Task LoginAsync(string email, string password)                   //Metoda odpowiedzialna za logowanie. 1.Pobierzemy użytkonika z repo. 2. Porównuje czy hasło jest poprawne.
-        {                                                                             // Flow Logowania Tworzymy Hasha na podstawie naszego przekazanego hasła
-            var user = await _userRepository.GetAsync(email);                         //Porównujemy z Hashem zapisanym na koncie naszego użytkownika 
-            if (user != null)
-                {
-                    throw new ServiceException(ErrorCodesServices.InvalidCredentials,
+        public async Task<IEnumerable<UserDto>> BrowseAsync()
+        {
+            var users = await _userRepository.GetAllAsync();
+
+            return _mapper.Map<IEnumerable<User>, IEnumerable<UserDto>>(users);
+        }
+
+        public async Task LoginAsync(string email, string password)
+        {
+            var user = await _userRepository.GetAsync(email);
+            if (user == null)
+            {
+                throw new ServiceException(ErrorCodes.InvalidPassword,
                     "Invalid credentials");
-                }
+            }
 
             var hash = _encrypter.GetHash(password, user.Salt);
             if (user.Password == hash)
-                {
-                    return;
-                }
-
-                    throw new ServiceException(ErrorCodesServices.InvalidCredentials,
-                    "Invalid credentials");
-
+            {
+                return;
+            }
+            throw new ServiceException(ErrorCodes.InvalidPassword,
+                "Invalid credentials");
         }
 
-        public async Task RegisterAsync(Guid userId, string email, string username, string password)
+        public async Task RegisterAsync(Guid userId, string email,
+            string username, string password, string role)
         {
             var user = await _userRepository.GetAsync(email);
             if (user != null)
             {
-                throw new ServiceException(ErrorCodesServices.EmailinUse, $"User with email: '{email}' already exists.");
+                throw new ServiceException(ErrorCodes.InvalidEmail,
+                    $"User with email: '{email}' already exists.");
             }
 
-            var salt = _encrypter.GetSalt(password);                              //W metodzie Rejestracji generujemy Salt i Hash
-            var hash = _encrypter.GetHash(password, salt);                        //W metodzie Rejestracji generujemy Salt i Hash
-            user = new User(userId, email, username, password, hash, salt);                         //Tutaj hasha przekazujemy jako Hasło
+            var salt = _encrypter.GetSalt(password);
+            var hash = _encrypter.GetHash(password, salt);
+            user = new User(userId, email, username, role, hash, salt);
             await _userRepository.AddAsync(user);
-        }
-        public async Task<IEnumerable<UserDto>> BrowseAsync()
-        {
-            var users = await _userRepository.BrowseAsync();
-            return _mapper.Map<IEnumerable<User>, IEnumerable<UserDto>>(users);
         }
     }
 }

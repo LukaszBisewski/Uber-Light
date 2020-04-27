@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using NLog;
 
 namespace Passenger.Infrastructure.Services
 {
@@ -10,44 +12,61 @@ namespace Passenger.Infrastructure.Services
         private readonly IUserService _userService;
         private readonly IDriverService _driverService;
         private readonly IDriverRouteService _driverRouteService;
-        private readonly ILogger<DataInitializer> _logger;
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public DataInitializer(IUserService userService, IDriverService driverService, ILogger<DataInitializer> logger, IDriverRouteService driverRouteService)
+        public DataInitializer(IUserService userService, IDriverService driverService,
+            IDriverRouteService driverRouteService)
         {
             _userService = userService;
             _driverService = driverService;
-            _logger = logger;
             _driverRouteService = driverRouteService;
         }
-       
+
         public async Task SeedAsync()
         {
-            _logger.LogTrace("Initializing data...");
-            var tasks = new List<Task>();                           //Nowa lista Taskó
-            for (var i = 1; i <= 10; i++)
+            var users = await _userService.BrowseAsync();
+
+            if (users.Any())
+            {
+                Logger.Trace("Data was already initialized.");
+
+                return;
+            }
+            Logger.Trace("Initializing data...");
+
+            for (var i = 0; i <= 10; i++)
             {
                 var userId = Guid.NewGuid();
                 var username = $"user{i}";
-                tasks.Add(_userService.RegisterAsync(userId, $"{username}@test.com", "secret", "user"));
-                _logger.LogTrace($"Created New user: '{username}'.");
-                tasks.Add(_driverService.CreateAsync(userId));
-                tasks.Add(_driverService.SetVehicleAsync(userId, "BMW", "i8"));
-                _logger.LogTrace($"Created New driver: '{username}'.");
-                tasks.Add(_driverRouteService.AddAsync(userId, "Default route",
-                    1, 1, 2, 2));
-                tasks.Add(_driverRouteService.AddAsync(userId, "Job route",
-                    3, 3, 5, 5));
-                _logger.LogTrace($"Adding driver for: '{username}'.");
+                var email = $"user{i}@test.com";
+                try
+                {
+
+                    await _userService.RegisterAsync(userId, email,
+                                                     username, "secret", "user");
+                    Logger.Trace($"Adding user: '{username}'.");
+                    await _driverService.CreateAsync(userId);
+                    await _driverService.SetVehicle(userId, "BMW", "i8");
+                    await _driverRouteService.AddAsync(userId, "Default route",
+                        1, 1, 2, 2);
+                    await _driverRouteService.AddAsync(userId, "Job route",
+                        3, 3, 5, 5);
+                    Logger.Trace($"Adding driver for: '{username}'.");
+                } catch
+                {
+                    Logger.Error($"Cannot add driver with name: '{username}' and email: {email}.");
+                }
+
             }
-            for (var i = 1; i <= 3; i++)                                                        // Tworzenie adminów
+            for (var i = 1; i <= 3; i++)
             {
                 var userId = Guid.NewGuid();
                 var username = $"admin{i}";
-                _logger.LogTrace($"Adding admin: '{username}'.");
-                tasks.Add(_userService.RegisterAsync(userId, $"admin{i}@test.com", "secret", "admin"));
+                Logger.Trace($"Adding admin: '{username}'.");
+                await _userService.RegisterAsync(userId, $"admin{i}@test.com",
+                    username, "secret", "admin");
             }
-            await Task.WhenAll(tasks);
-            _logger.LogTrace("Data was initialized.");
+            Logger.Trace("Data was initialized.");
         }
     }
 }

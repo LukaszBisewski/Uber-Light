@@ -15,6 +15,8 @@ using Passenger.Infrastructure.Settings;
 using Passenger.Api.Framework;
 using NLog.Web;
 using NLog.Extensions.Logging;
+using Passenger.Infrastructure.Mongo;
+using Passenger.Infrastructure.EF;
 
 namespace Passenger.Api
 {
@@ -58,6 +60,10 @@ namespace Passenger.Api
             services.AddMemoryCache();
             services.AddMvc()
                     .AddJsonOptions(x => x.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented);
+            services.AddEntityFrameworkInMemoryDatabase()
+                     .AddEntityFrameworkSqlServer()
+                     .AddDbContext<PassengerContext>();
+            
             var builder = new ContainerBuilder();
   
             builder.Populate(services);
@@ -79,10 +85,10 @@ namespace Passenger.Api
 
 
             //var jwtSettings = app.ApplicationServices.GetService<JwtSettings>();        //W app pobieramy nasz klucz, w ApplicationServices możemy odwołac się do wszystkich serwisów które zostały zarejestrowane za pomocna metody ConfigureServices. GetService<JwtSettings>();- pobierz implementacje servisu dla JwtSettings 
-
+            MongoConfigurator.Initialize();
             app.UseAuthentication();
             var generalSettings = app.ApplicationServices.GetService<GeneralSettings>();
-            if (generalSettings.SeedData)
+            if (generalSettings.SeedData) // tu masz pewnie false
             {
                 var dataInitializer = app.ApplicationServices.GetService<IDataInitializer>();
                 dataInitializer.SeedAsync();

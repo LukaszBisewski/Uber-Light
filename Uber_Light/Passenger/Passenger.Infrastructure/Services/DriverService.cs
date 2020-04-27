@@ -50,7 +50,7 @@ namespace Passenger.Infrastructure.Services
             await _driverRepository.AddAsync(driver);
         }
 
-        public async Task SetVehicleAsync(Guid userId, string brand, string name)
+        public async Task SetVehicle(Guid userId, string brand, string name)
         {
             var driver = await _driverRepository.GetOrFailAsync(userId);
             var vehicleDetails = await _vehicleProvider.GetAsync(brand, name);

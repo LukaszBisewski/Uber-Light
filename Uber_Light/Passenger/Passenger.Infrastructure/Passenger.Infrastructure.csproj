@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -7,6 +7,9 @@
   <ItemGroup>
 	<PackageReference Include="Autofac" Version="5.1.2" />
 	<PackageReference Include="AutoMapper" Version="9.0.0" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="1.1.2" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.2" />
+	<PackageReference Include="MongoDB.Driver" Version="2.10.3" />
 	<PackageReference Include="NLog" Version="4.7.0" />
     <ProjectReference Include="..\Passenger.Core\Passenger.Core.csproj" />
 	<PackageReference Include="Newtonsoft.Json" Version="10.0.01" />

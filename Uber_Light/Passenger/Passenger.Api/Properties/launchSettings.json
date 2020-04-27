@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "users", // tu masz sciezke ktora odpala sie przy starcie w IIS Server
+      "launchUrl": "", // tu masz sciezke ktora odpala sie przy starcie w IIS Server
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
