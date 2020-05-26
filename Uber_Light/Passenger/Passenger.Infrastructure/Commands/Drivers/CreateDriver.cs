@@ -1,6 +1,4 @@
-﻿using Passenger.Core.Domain;
-using Passenger.Infrastructure.Commands.Drivers.Models;
-using System;
+﻿using Passenger.Infrastructure.Commands.Drivers.Models;
 
 namespace Passenger.Infrastructure.Commands.Drivers
 {

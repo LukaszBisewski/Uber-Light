@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using NLog;
 using Passenger.Infrastructure.Commands;
 using Passenger.Infrastructure.Commands.Drivers;
@@ -51,7 +50,6 @@ namespace Passenger.Api.Controllers
             await DispatchAsync(command);
 
             return Created($"drivers/{command.UserId}", null);
-            // return Created($"drivers/{command.UserId}", null);
         }
 
 

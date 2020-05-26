@@ -23,7 +23,7 @@ namespace Passenger.Api
     public class Startup
     {
         public IConfigurationRoot Configuration { get; }
-        public IContainer ApplicationContainer { get; private set; }                //Trzyma konfig dla kontenrata IOC żeby wiedział jakie implementacje klas wstrzykiwac dla danych interfejsów.
+        public IContainer ApplicationContainer { get; private set; }
 
         public Startup(IHostingEnvironment env)
         {
@@ -36,7 +36,6 @@ namespace Passenger.Api
             Configuration = builder.Build();
         }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddAuthentication(o =>
@@ -77,18 +76,15 @@ namespace Passenger.Api
         public void Configure(IApplicationBuilder app, IHostingEnvironment env,
             ILoggerFactory loggerFactory, IApplicationLifetime appLifetime)
         {
-            //loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            //loggerFactory.AddDebug();
+
             loggerFactory.AddNLog();
             app.AddNLogWeb();
             env.ConfigureNLog("Nlog.config");
 
-
-            //var jwtSettings = app.ApplicationServices.GetService<JwtSettings>();        //W app pobieramy nasz klucz, w ApplicationServices możemy odwołac się do wszystkich serwisów które zostały zarejestrowane za pomocna metody ConfigureServices. GetService<JwtSettings>();- pobierz implementacje servisu dla JwtSettings 
             MongoConfigurator.Initialize();
             app.UseAuthentication();
             var generalSettings = app.ApplicationServices.GetService<GeneralSettings>();
-            if (generalSettings.SeedData) // tu masz pewnie false
+            if (generalSettings.SeedData)
             {
                 var dataInitializer = app.ApplicationServices.GetService<IDataInitializer>();
                 dataInitializer.SeedAsync();

@@ -1,9 +1,6 @@
 ﻿using System.Reflection;
 using Autofac;
-using MongoDB.Driver;
 using Passenger.Infrastructure.EF;
-using Passenger.Infrastructure.Mongo;
-using Passenger.Infrastructure.Repositories;
 
 namespace Passenger.Infrastructure.IoC.Modules
 {

@@ -39,14 +39,13 @@ namespace Passenger.Infrastructure.Services
             _cache = cache;
         }
 
-        //Sample usage of the caching mechanism.
         public async Task<IEnumerable<VehicleDto>> BrowseAsync()
         {
-            var vehicles = _cache.Get<IEnumerable<VehicleDto>>(CacheKey); //Pobierz z cacha dla naszego klucza CacheKey czyli stringa vehicle
+            var vehicles = _cache.Get<IEnumerable<VehicleDto>>(CacheKey);
             if (vehicles == null)
             {
-                vehicles = await GetAllAsync();                         // Jeżeli jest null to metoda pobiera pojazdy np z bazy danych i zapiszę dane w cachu
-                _cache.Set(CacheKey, vehicles);                         // żeby za kazdym razem nie odpytywać bazy
+                vehicles = await GetAllAsync();
+                _cache.Set(CacheKey, vehicles);
             }
 
             return vehicles;
@@ -54,12 +53,12 @@ namespace Passenger.Infrastructure.Services
 
         public async Task<Vehicle> GetAsync(string brand, string name)
         {
-            if (!availableVehicles.ContainsKey(brand))               //Jeżeli nei posiadamy klucza
+            if (!availableVehicles.ContainsKey(brand))               //Jeżeli nie posiadamy klucza
             {
                 throw new Exception($"Vehicle brand: '{brand}' is not available.");
             }
             var vehicles = availableVehicles[brand];                // Pobranie pojazdów dla podanej Marki
-            var vehicle = vehicles.SingleOrDefault(x => x.Name == name); // Pobranie pojazdów dla podanego name
+            var vehicle = vehicles.SingleOrDefault(x => x.Name == name);
             if (vehicle == null)
             {
                 throw new Exception($"Vehicle: '{name}' for brand: '{brand}' is not available.");
@@ -68,7 +67,6 @@ namespace Passenger.Infrastructure.Services
             return await Task.FromResult(Vehicle.Create(brand, name, vehicle.Seats));
         }
 
-        //Let's assume it's either an expensive or often used query on a database.
         private async Task<IEnumerable<VehicleDto>> GetAllAsync()
             => await Task.FromResult(availableVehicles.GroupBy(x => x.Key)
                 .SelectMany(g => g.SelectMany(v => v.Value.Select(x => new VehicleDto

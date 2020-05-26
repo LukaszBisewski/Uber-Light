@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Passenger.Core.Domain;
 
 namespace Passenger.Infrastructure.EF

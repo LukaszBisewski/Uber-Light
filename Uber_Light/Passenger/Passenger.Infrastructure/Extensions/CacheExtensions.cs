@@ -6,7 +6,7 @@ namespace Passenger.Infrastructure.Extensions
 {
     public static class CacheExtensions
     {
-        public static void SetJwt(this IMemoryCache cache, string email, JwtDto jwt) //metoda rozszerzająca dla Cache do przechowywania tokena
+        public static void SetJwt(this IMemoryCache cache, string email, JwtDto jwt) //Metoda rozszerzająca dla Cache do przechowywania tokena
             => cache.Set(GetJwtKey(email), jwt, TimeSpan.FromSeconds(5));
 
         public static JwtDto GetJwt(this IMemoryCache cache, string email)          //Pobieranie z cacha

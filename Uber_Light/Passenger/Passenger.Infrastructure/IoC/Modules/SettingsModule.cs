@@ -12,7 +12,7 @@ namespace Passenger.Infrastructure.IoC.Modules
         private readonly IConfiguration _configuration;
 
 
-        public SettingsModule(IConfiguration configuration) // W konstruktorze chcemy przekazać obiekt IConfiguration
+        public SettingsModule(IConfiguration configuration)
 
         {
             _configuration = configuration;
@@ -20,14 +20,11 @@ namespace Passenger.Infrastructure.IoC.Modules
 
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterInstance(_configuration.GetSettings<GeneralSettings>()) // builder zarejestruj instancję, użyj metody GetSettings z Extensions
+            builder.RegisterInstance(_configuration.GetSettings<GeneralSettings>()) // Builder zarejestruj instancję, użyj metody GetSettings z Extensions
             .SingleInstance();
-            builder.RegisterInstance(_configuration.GetSettings<JwtSettings>()) // builder zarejestruj instancję, użyj metody GetSettings z Extensions
+            builder.RegisterInstance(_configuration.GetSettings<JwtSettings>()) // Builder zarejestruj instancję, użyj metody GetSettings z Extensions
             .SingleInstance();
-            /* W tym module mówimy zarejestruj mi instancję jako singleton.
-            * Weź z naszej konfiguracji i użyj metodę rozszerzajacą get Setiings ==> przejdź do metody
-            */
-            builder.RegisterInstance(_configuration.GetSettings<MongoSettings>()) // builder zarejestruj instancję, użyj metody GetSettings z Extensions
+            builder.RegisterInstance(_configuration.GetSettings<MongoSettings>()) // Builder zarejestruj instancję, użyj metody GetSettings z Extensions
             .SingleInstance();
             builder.RegisterInstance(_configuration.GetSettings<SqlSettings>())
             .SingleInstance();

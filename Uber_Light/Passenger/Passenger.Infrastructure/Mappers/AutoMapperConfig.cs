@@ -1,19 +1,16 @@
 ﻿using AutoMapper;
 using Passenger.Core.Domain;
 using Passenger.Infrastructure.DTO;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Passenger.Infrastructure.Mappers
 {
-    public static class AutoMapperConfig // odpowiada nza konfigurację.
+    public static class AutoMapperConfig 
     {
-        public static IMapper Initialize() //Zwróci nam instanc ję interfejsu Mapper
+        public static IMapper Initialize()
 
-            => new MapperConfiguration(cfg =>  //IMaper-interfejs , Initialize-Metoda(która zwraca implementacje tego interfejsu), 
+            => new MapperConfiguration(cfg =>
 
-        {                                       //Dostarczamy konfigurację do Mappera w postaci wyrażenia lambda
+        {                                       
             cfg.CreateMap<Driver, DriverDto>();
             cfg.CreateMap<Driver, DriverDetailsDto>();
             cfg.CreateMap<Node, NodeDto>();
@@ -21,7 +18,7 @@ namespace Passenger.Infrastructure.Mappers
             cfg.CreateMap<User, UserDto>();
             cfg.CreateMap<Vehicle, VehicleDto>();
         })
-            .CreateMapper();                //metoda CreateMapper na podstawie konfiguracji tworzzy interfejs IMaper
+            .CreateMapper();                
         
     }
 }

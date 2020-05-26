@@ -6,7 +6,7 @@ using Passenger.Infrastructure.Commands;
 namespace Passenger.Api.Controllers
 {
     [Route("[controller]")]
-    public abstract class ApiControllerBase : Controller  //Jestesmy wstanie wydobyć nasze UserId na podstawie Tokenu
+    public abstract class ApiControllerBase : Controller
     {
         private readonly ICommandDispatcher CommandDispatcher;
 

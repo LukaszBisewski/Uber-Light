@@ -20,14 +20,14 @@ namespace Passenger.Infrastructure.Services
 
         public JwtDto CreateToken(Guid userId, string role)
         {
-            var now = DateTime.UtcNow;                              //Logika odpowiedzialna za generowanie tokena dla podanego Adresu email.
-            var claims = new Claim[]                                //Za pomocą Claimsów możemy ustawiać różnego rodzzaju dane. Tworzymy koekcję Claimsów , po czym przekazujemy 
+            var now = DateTime.UtcNow;
+            var claims = new Claim[]
             {
             new Claim(JwtRegisteredClaimNames.Sub, userId.ToString()),
             new Claim(JwtRegisteredClaimNames.UniqueName, userId.ToString()),
                 new Claim(ClaimTypes.Role, role),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),                                  //Jti - kiedy token został wystawiony ttime issued, Id tokena 
-                new Claim(JwtRegisteredClaimNames.Iat, now.ToTimestamp().ToString(), ClaimValueTypes.Integer64)     //Iat - data stworzenia tokena
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),                                  //Jti - kiedy token został wystawiony ttime issued, Id tokena.
+                new Claim(JwtRegisteredClaimNames.Iat, now.ToTimestamp().ToString(), ClaimValueTypes.Integer64)     //Iat - data stworzenia tokena.
             };
             var expires = now.AddMinutes(_settings.ExpiryMinutes);
             var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_settings.Key)),
@@ -35,7 +35,7 @@ namespace Passenger.Infrastructure.Services
             var jwt = new JwtSecurityToken(                                                     //Tworzymy token i przekazujemy argumenty
                 issuer: _settings.Issuer,                                                       //Bierzemy z JwtSettings
                 claims: claims,
-                notBefore: now,                                                                 //od kiedy jest ważny
+                notBefore: now,                                                                 //Od kiedy jest ważny.
                 expires: expires,
                 signingCredentials: signingCredentials
             );

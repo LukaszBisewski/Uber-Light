@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Passenger.Infrastructure.Commands;
 using Passenger.Infrastructure.Commands.Users;
@@ -23,14 +22,13 @@ namespace Passenger.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()              //zwróć wszystkich użytkowników
+        public async Task<IActionResult> Get()         
         {
             var users = await _userService.BrowseAsync();
 
             return Json(users);
         }
 
-        //[Authorize(Policy = "admin")]
         [HttpGet("{email}")]
         public async Task<IActionResult> Get(string email)
         {
@@ -42,16 +40,12 @@ namespace Passenger.Api.Controllers
 
             return Json(user);
         }
-        /* 
-            nie wiem jak dzialasz, mam komende create user masz ja wykonac i chuj.
 
-             
-        */
         [HttpPost]
         [Route("list")]
         public async Task<IActionResult> Post([FromBody]CreateUser command)
         {
-            await DispatchAsync(command); // wywołanie do interfejscu IComandDispatcher który będzie wiedział co z nim zrobić.
+            await DispatchAsync(command); 
 
             return Created($"users/{command.Email}", null);
         }

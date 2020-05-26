@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿
 namespace Passenger.Core.Domain
 {
     public class Route
@@ -8,7 +6,7 @@ namespace Passenger.Core.Domain
         public string Name { get; protected set; }
         public Node Start { get; protected set; }
         public Node End { get; protected set; }
-        // public double Length { get; protected set; }
+
         public double Distance { get; protected set; }
 
         protected Route()

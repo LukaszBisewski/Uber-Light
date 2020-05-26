@@ -15,3 +15,4 @@ CREATE TABLE Users (
 
 SELECT * FROM Users;
 
+Delete from Users;

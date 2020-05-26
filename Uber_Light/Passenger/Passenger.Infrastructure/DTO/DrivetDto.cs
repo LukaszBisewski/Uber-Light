@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using Passenger.Core.Domain;
 
 namespace Passenger.Infrastructure.DTO
 {

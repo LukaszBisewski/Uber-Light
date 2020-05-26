@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace Passenger.Infrastructure.Commands.Drivers.Models
 {
     public class DriverVehicle

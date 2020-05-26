@@ -9,7 +9,7 @@ namespace Passenger.Infrastructure.Handlers.Accounts
 {
     public class LoginHandler : ICommandHandler<Login>
     {
-        private readonly IHandler   _handler;
+        private readonly IHandler _handler;
         private readonly IUserService _userService;
         private readonly IJwtHandler _jwtHandler;
         private readonly IMemoryCache _cache;
@@ -34,13 +34,5 @@ namespace Passenger.Infrastructure.Handlers.Accounts
                 _cache.SetJwt(command.Email, jwt);
             })
             .ExecuteAsync();
-
-        //public async Task HandleAsync(Login command)                            //Flow logowania.
-        //{
-        //    await _userService.LoginAsync(command.Email, command.Password);    //w _userService wywołujemy metodę LoginAsync
-        //    var user = await _userService.GetAsync(command.Email);              
-        //    var jwt = _jwtHandler.CreateToken(user.Id, user.Role);
-        //    _cache.SetJwt(command.Email, jwt);
-        //}
     }
 }
